@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 interface Asset {
   symbol: string;
@@ -9,6 +10,7 @@ interface Asset {
   value: number;
   change24h: number;
   chain: string;
+  logoSrc?: string;
 }
 
 export default function PortfolioOverview() {
@@ -18,10 +20,10 @@ export default function PortfolioOverview() {
 
   useEffect(() => {
     const mockAssets: Asset[] = [
-      { symbol: "BTC", name: "Bitcoin", balance: 0.25, value: 10250, change24h: 2.4, chain: "Bitcoin" },
-      { symbol: "ETH", name: "Ethereum", balance: 5.8, value: 11600, change24h: -1.2, chain: "Ethereum" },
-      { symbol: "SOL", name: "Solana", balance: 45.2, value: 4520, change24h: 5.7, chain: "Solana" },
-      { symbol: "ICP", name: "Internet Computer", balance: 120, value: 1440, change24h: 3.1, chain: "ICP" },
+      { symbol: "BTC", name: "Bitcoin", balance: 0.25, value: 10250, change24h: 2.4, chain: "Bitcoin", logoSrc: "/bitcoin-logo-svgrepo-com.svg" },
+      { symbol: "ETH", name: "Ethereum", balance: 5.8, value: 11600, change24h: -1.2, chain: "Ethereum", logoSrc: "/eth-svgrepo-com.svg" },
+      { symbol: "SOL", name: "Solana", balance: 45.2, value: 4520, change24h: 5.7, chain: "Solana", logoSrc: "/solana-svgrepo-com.svg" },
+      { symbol: "ICP", name: "Internet Computer", balance: 120, value: 1440, change24h: 3.1, chain: "ICP", logoSrc: "/icp-svgrepo-com.svg" },
     ];
     
     setTimeout(() => {
@@ -146,15 +148,20 @@ export default function PortfolioOverview() {
                 <tr key={asset.symbol} className="hover:bg-white/40 dark:hover:bg-gray-700/30 transition-colors">
                   <td className="px-8 py-6 whitespace-nowrap">
                     <div className="flex items-center">
-                      <div className={`w-12 h-12 bg-gradient-to-br ${
-                        index === 0 ? 'from-orange-400 to-orange-600' :
-                        index === 1 ? 'from-blue-400 to-blue-600' :
-                        index === 2 ? 'from-purple-400 to-purple-600' :
-                        'from-indigo-400 to-indigo-600'
-                      } rounded-xl flex items-center justify-center mr-4 shadow-lg`}>
-                        <span className="text-white text-sm font-bold">
-                          {asset.symbol.charAt(0)}
-                        </span>
+                      <div className="w-12 h-12 bg-white dark:bg-gray-700 rounded-xl flex items-center justify-center mr-4 shadow-lg p-2">
+                        {asset.logoSrc ? (
+                          <Image
+                            src={asset.logoSrc}
+                            alt={asset.name}
+                            width={32}
+                            height={32}
+                            className="w-full h-full object-contain"
+                          />
+                        ) : (
+                          <span className="text-gray-600 dark:text-gray-300 text-sm font-bold">
+                            {asset.symbol.charAt(0)}
+                          </span>
+                        )}
                       </div>
                       <div>
                         <div className="text-lg font-bold text-gray-900 dark:text-white">

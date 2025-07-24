@@ -2,25 +2,25 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const blockchainLogos = [
-  { symbol: "BTC", name: "Bitcoin", color: "#F7931A" },
-  { symbol: "ETH", name: "Ethereum", color: "#627EEA" },
-  { symbol: "SOL", name: "Solana", color: "#9945FF" },
-  { symbol: "ICP", name: "Internet Computer", color: "#ED1E79" },
-  { symbol: "MATIC", name: "Polygon", color: "#8247E5" },
-  { symbol: "AVAX", name: "Avalanche", color: "#E84142" },
-  { symbol: "LINK", name: "Chainlink", color: "#375BD2" },
-  { symbol: "ADA", name: "Cardano", color: "#0033AD" },
-  { symbol: "DOT", name: "Polkadot", color: "#E6007A" },
-  { symbol: "ATOM", name: "Cosmos", color: "#2E3148" },
+  { symbol: "BTC", name: "Bitcoin", src: "/bitcoin-logo-svgrepo-com.svg" },
+  { symbol: "ETH", name: "Ethereum", src: "/eth-svgrepo-com.svg" },
+  { symbol: "SOL", name: "Solana", src: "/solana-svgrepo-com.svg" },
+  { symbol: "ICP", name: "Internet Computer", src: "/icp-svgrepo-com.svg" },
+  // Add some variety by repeating the available logos
+  { symbol: "BTC", name: "Bitcoin", src: "/bitcoin-logo-svgrepo-com.svg" },
+  { symbol: "ETH", name: "Ethereum", src: "/eth-svgrepo-com.svg" },
+  { symbol: "SOL", name: "Solana", src: "/solana-svgrepo-com.svg" },
+  { symbol: "ICP", name: "Internet Computer", src: "/icp-svgrepo-com.svg" },
 ];
 
 interface FallingLogo {
   id: number;
   symbol: string;
   name: string;
-  color: string;
+  src: string;
   x: number;
   y: number;
   speed: number;
@@ -41,11 +41,11 @@ export default function LandingPage() {
         id: i,
         symbol: randomLogo.symbol,
         name: randomLogo.name,
-        color: randomLogo.color,
+        src: randomLogo.src,
         x: Math.random() * window.innerWidth,
         y: -50 - Math.random() * 200,
         speed: 0.3 + Math.random() * 1.5,
-        size: 16 + Math.random() * 12,
+        size: 32 + Math.random() * 24, // Larger size for better visibility
       });
     }
     setFallingLogos(initialLogos);
@@ -64,7 +64,8 @@ export default function LandingPage() {
           ...(logo.y > window.innerHeight + 50 && {
             y: -50 - Math.random() * 200,
             x: Math.random() * window.innerWidth,
-            ...blockchainLogos[Math.floor(Math.random() * blockchainLogos.length)]
+            ...blockchainLogos[Math.floor(Math.random() * blockchainLogos.length)],
+            size: 32 + Math.random() * 24,
           })
         }))
       );
@@ -81,16 +82,22 @@ export default function LandingPage() {
         {fallingLogos.map(logo => (
           <div
             key={logo.id}
-            className="absolute font-bold transition-all duration-75 opacity-20"
+            className="absolute transition-all duration-75 opacity-30"
             style={{
               left: `${logo.x}px`,
               top: `${logo.y}px`,
-              fontSize: `${logo.size}px`,
-              color: logo.color,
+              width: `${logo.size}px`,
+              height: `${logo.size}px`,
               transform: `rotate(${logo.y * 0.05}deg)`,
             }}
           >
-            {logo.symbol}
+            <Image
+              src={logo.src}
+              alt={logo.name}
+              width={logo.size}
+              height={logo.size}
+              className="w-full h-full object-contain filter brightness-150"
+            />
           </div>
         ))}
       </div>

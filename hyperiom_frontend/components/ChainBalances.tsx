@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 interface ChainBalance {
   chain: string;
   symbol: string;
   logo: string;
+  logoSrc?: string;
   balance: number;
   usdValue: number;
   address: string;
@@ -32,6 +34,7 @@ export default function ChainBalances() {
           chain: "Bitcoin",
           symbol: "BTC",
           logo: "₿",
+          logoSrc: "/bitcoin-logo-svgrepo-com.svg",
           balance: 0.25487,
           usdValue: 10458.32,
           address: "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
@@ -43,6 +46,7 @@ export default function ChainBalances() {
           chain: "Ethereum", 
           symbol: "ETH",
           logo: "Ξ",
+          logoSrc: "/eth-svgrepo-com.svg",
           balance: 5.847,
           usdValue: 11694.23,
           address: "0x742d35Cc6B45C0532B4C2c7b35C1234567890123",
@@ -54,6 +58,7 @@ export default function ChainBalances() {
           chain: "Solana",
           symbol: "SOL", 
           logo: "◎",
+          logoSrc: "/solana-svgrepo-com.svg",
           balance: 45.23,
           usdValue: 4523.45,
           address: "DsV4VhPtGw8kKx7QJCPRHPNJRGy6xKgWNKFQd9s8Q2mX",
@@ -65,6 +70,7 @@ export default function ChainBalances() {
           chain: "Internet Computer",
           symbol: "ICP",
           logo: "∞",
+          logoSrc: "/icp-svgrepo-com.svg",
           balance: 120.45,
           usdValue: 1445.4,
           address: "rrkah-fqaaa-aaaaa-aaaaq-cai",
@@ -160,8 +166,18 @@ export default function ChainBalances() {
           <div key={chain.chain} className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                  <span className="text-white text-xl">{chain.logo}</span>
+                <div className="w-12 h-12 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center p-2 shadow-lg">
+                  {chain.logoSrc ? (
+                    <Image
+                      src={chain.logoSrc}
+                      alt={chain.chain}
+                      width={32}
+                      height={32}
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <span className="text-gray-600 dark:text-gray-300 text-xl">{chain.logo}</span>
+                  )}
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900 dark:text-white">
