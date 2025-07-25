@@ -29,6 +29,8 @@ interface FallingLogo {
 
 export default function LandingPage() {
   const [showContent, setShowContent] = useState(false);
+  const [fallingLogos, setFallingLogos] = useState<FallingLogo[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     // Initialize falling logos
