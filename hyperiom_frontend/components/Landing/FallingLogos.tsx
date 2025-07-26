@@ -3,16 +3,15 @@
 import { useState, useEffect } from "react";
 
 const blockchainLogos = [
-  { symbol: "₿", name: "Bitcoin", color: "#F7931A", glow: "shadow-orange-500/20" },
-  { symbol: "Ξ", name: "Ethereum", color: "#627EEA", glow: "shadow-blue-500/20" },
-  { symbol: "◎", name: "Solana", color: "#9945FF", glow: "shadow-purple-500/20" },
-  { symbol: "∞", name: "Internet Computer", color: "#ED1E79", glow: "shadow-pink-500/20" },
-  { symbol: "⬟", name: "Polygon", color: "#8247E5", glow: "shadow-indigo-500/20" },
-  { symbol: "▲", name: "Avalanche", color: "#E84142", glow: "shadow-red-500/20" },
-  { symbol: "⬢", name: "Chainlink", color: "#375BD2", glow: "shadow-blue-600/20" },
-  { symbol: "₳", name: "Cardano", color: "#0033AD", glow: "shadow-blue-700/20" },
-  { symbol: "●", name: "Polkadot", color: "#E6007A", glow: "shadow-pink-600/20" },
-  { symbol: "⚛", name: "Cosmos", color: "#2E3148", glow: "shadow-gray-500/20" },
+  { symbol: "BTC", name: "Bitcoin", color: "#F7931A", glow: "drop-shadow(0 0 20px #F7931A40)" },
+  { symbol: "ETH", name: "Ethereum", color: "#627EEA", glow: "drop-shadow(0 0 20px #627EEA40)" },
+  { symbol: "SOL", name: "Solana", color: "#9945FF", glow: "drop-shadow(0 0 20px #9945FF40)" },
+  { symbol: "ICP", name: "Internet Computer", color: "#29ABE2", glow: "drop-shadow(0 0 20px #29ABE240)" },
+  // Add some variety by repeating the available logos
+  { symbol: "BTC", name: "Bitcoin", color: "#F7931A", glow: "drop-shadow(0 0 20px #F7931A40)" },
+  { symbol: "ETH", name: "Ethereum", color: "#627EEA", glow: "drop-shadow(0 0 20px #627EEA40)" },
+  { symbol: "SOL", name: "Solana", color: "#9945FF", glow: "drop-shadow(0 0 20px #9945FF40)" },
+  { symbol: "ICP", name: "Internet Computer", color: "#29ABE2", glow: "drop-shadow(0 0 20px #29ABE240)" },
 ];
 
 interface FallingLogo {

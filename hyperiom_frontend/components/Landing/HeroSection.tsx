@@ -64,10 +64,10 @@ export default function HeroSection({ showContent }: HeroSectionProps) {
           <div className="ml-3 w-1 h-1 bg-gray-500 rounded-full opacity-60"></div>
         </div>
 
-        {/* Main Heading with Enhanced Typography */}
+        {/* Main Heading with Enhanced Typography - BOTH LINES NOW ANIMATED */}
         <div className="mb-12">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
-            <span className="block bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent drop-shadow-sm">
+            <span className="block bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent animate-gradient-x">
               Chain-Agnostic
             </span>
             <span className="block bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-gradient-x">

@@ -210,7 +210,7 @@ export default function Navigation() {
       </nav>
 
       {/* Spacer for fixed navigation */}
-      <div className="h-16 sm:h-18 lg:h-20"></div>
+      <div className="h-20 sm:h-24 lg:h-28"></div>
     </>
   )
 }
